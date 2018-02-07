@@ -19,7 +19,6 @@
         </div>
 </template>
 
-
 <script>
   import tabSheZhi from '../components/setInfo/quanXianSet'
   import tabAnQuanSet from '../components/setInfo/tabAnQuanSet'
@@ -68,9 +67,11 @@
   #sets-modal {
     height: 100%;
     position:relative;
+    background-color: #eaeaea;
     .tabsClass {
       padding-top: 40px;
       box-sizing: border-box;
+      background-color: #eaeaea;
       .el-tabs--top {
         .el-tabs__header {
           position: fixed;

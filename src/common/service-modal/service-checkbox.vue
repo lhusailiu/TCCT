@@ -2,7 +2,7 @@
     <div>
       <div class="checkstyle">
         <el-checkbox-group v-model="checkList" @change="changeList">
-          <el-checkbox v-for="(item, index) in checkOption"  :label="item.id":key="index">{{item.label}}</el-checkbox>
+          <el-checkbox v-for="(item, index) in dranger"  :label="item.id":key="index">{{item.label}}</el-checkbox>
         </el-checkbox-group>
       </div>
     </div>
@@ -11,6 +11,7 @@
 <script>
     export default {
       name: 'service-checkbox',
+      props: ['dranger'],
       data () {
         return {
           checkList: [],
@@ -31,6 +32,9 @@
           this.checkStr = val.join('')
           this.$emit('chekBox', this.checkStr)
         }
+      },
+      created () {
+
       }
     }
 </script>

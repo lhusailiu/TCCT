@@ -9,8 +9,8 @@
       </div>
       <div class="she-content">
         <ul>
-          <li>1</li>
-          <li>1</li>
+
+          <li>222</li>
           <li>1</li>
           <li>1</li>
           <li>1</li>
@@ -67,7 +67,9 @@
         name: 'tab-she-zhi',
         props: ['sheZhiItem'],
         data () {
-            return {}
+            return {
+              selectBox: [{id: '001', label: '开机时自动登录'}]
+            }
         },
         components: {},
         computed: {},
@@ -85,11 +87,13 @@
     position: relative;
     height: 100%;
     width: 100%;
+    background-color: #eaeaea;
     .shezhiList {
       height: 100%;
       width: 25%;
       position: fixed;
       ul {
+
         li {
           height: 40px;
           line-height: 40px;

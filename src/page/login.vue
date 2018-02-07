@@ -24,7 +24,7 @@
                    <el-input type="password" v-model="loginForm.password" auto-complete="off"></el-input>
                    <router-link to="/foundPass">找回密码</router-link>
                  </el-form-item>
-                 <check-select @checkBox="handCheckBox"></check-select>
+                 <check-select @checkBox="handCheckBox" :dranger="drangerIn"></check-select>
                  <el-form-item>
                    <el-button @click="loginIn">登录</el-button>
                  </el-form-item>
@@ -39,6 +39,7 @@
 
 <script>
     import CheckSelect from '../common/service-modal/service-checkbox'
+    import {getDranger} from '../api/getData'
     import {mapState} from 'vuex'
     export default {
       name: 'login',
@@ -52,7 +53,8 @@
             password: ''
           },
           isRemove: true,
-          checkBoxsStr: ''
+          checkBoxsStr: '',
+          drangerIn: []
         }
       },
       methods: {
@@ -84,6 +86,10 @@
           })
         },
         firstLogin () {
+          let url = '/dranger'
+          getDranger(url).then((res) => {
+            this.drangerIn = res
+          })
           if (this.user && this.password) {
             this.loginForm.password = this.$store.state.password
             this.loginForm.user = this.$store.state.user

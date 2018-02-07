@@ -1,14 +1,33 @@
 <template>
-    <div>
       <div class="registry">
-        注册
+
       </div>
-    </div>
 </template>
 
 <script>
     export default {
-        name: 'registry'
+      name: 'registry',
+      data () {
+        return {
+          isClick: false
+        }
+      },
+      methods: {
+        getIner () {
+          this.isClick = true
+          if (this.isClick) {
+            return
+          }
+          if (!this.isClick) {
+            this.$store.commit('saveUsert', this.isClick)
+          }
+        }
+      },
+      computed () {
+      },
+      mounted () {
+        window.addEventListener('click', this.getIner)
+      }
     }
 </script>
 

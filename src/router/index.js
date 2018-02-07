@@ -16,6 +16,7 @@ const setsModal = r => require.ensure([], () => r(require('@/page/setsModal')), 
 const editZiliao = r => require.ensure([], () => r(require('@/page/editZiliao')), 'editZiliao')
 const mainList = r => require.ensure([], () => r(require('@/page/mainList')), 'mainList')
 const echarts = r => require.ensure([], () => r(require('@/page/echarts')), 'echarts')
+const setAddFriend = r => require.ensure([], () => r(require('@/page/setAddFriend')), 'setAddFriend')
 // const chuangkou = r => require.ensure([], () => r(require('@/components/chuangkou')), 'chuangkou')
 // const editZiliao = r => require.ensure([], () => r(require('@/common/service-modal/editZiliao')), 'editZiliao')
 
@@ -86,6 +87,11 @@ const routes = [
           path: '/mainList',
           name: 'mainList',
           component: mainList
+        },
+        {
+          path: '/setAddFriend',
+          name: 'setAddFriend',
+          component: setAddFriend
         },
         {
           path: '/editZiliao/:userPicItems/:userPicItemName/:userId',
