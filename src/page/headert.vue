@@ -34,7 +34,7 @@
             </div>
           </div>
           <div class="search-user">
-            <el-input v-model="input" suffix-icon="el-icon-search" ></el-input>
+            <el-input v-model="input" suffix-icon="el-icon-search" @focus="getSearch" @blur="getNoSearch"></el-input>
           </div>
           <div class="user-grund">
               <div class="friend">
@@ -67,13 +67,18 @@
 </template>
 
 <script>
+  import bus from '../test/index'
     export default {
         name: 'headert',
         props: ['userItem'],
         data () {
           return {
             input: '',
-            userPicItems: {}
+            userPicItems: {},
+            isSearchALl: {
+              isTabFriends: true,
+              isSearch: false
+            }
           }
         },
         components: {},
@@ -109,11 +114,25 @@
                 path: '/'
               })
             }
+          },
+          getSearch () {
+            console.log('获取到了')
+            this.isSearchALl.isTabFriends = false
+            this.isSearchALl.isSearch = true
+            bus.$emit('propsShow', this.isSearchALl)
+            return false
+          },
+          getNoSearch () {
+            this.isSearchALl.isTabFriends = true
+            this.isSearchALl.isSearch = false
+            bus.$emit('propsNoShow', this.isSearchALl)
+            return false
           }
         },
         created () {
         },
         mounted () {
+
         }
     }
 </script>
@@ -153,7 +172,7 @@
         margin-top: 18px;
         .el-input__inner {
           border-radius: 40px;
-          padding-left:10px;
+          padding-left:20px;
 
         }
       }

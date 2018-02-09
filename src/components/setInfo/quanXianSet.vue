@@ -83,7 +83,6 @@
         <li>
           <p>音视频通话</p>
         </li>
-
       </ul>
     </div>
   </div>
@@ -140,13 +139,15 @@
         closeTsy: [
           {id: 'TSM1', label: '关闭所有声音'}
         ],
-        isAdd: false
+        isAdd: false,
+        arrHeight: []
       }
     },
     components: {checkBox, selectBox, selectStatus, selectingRadios},
     computed: {},
     methods: {
       init () {
+      this.$('.shezhiList')[0].firstChild.children[0].className = 'active'
       },
       handleChange () {
       },
@@ -157,12 +158,39 @@
         this.$router.push({
           name: 'setAddFriend'
         })
+      },
+      setCodes () {},
+      getLisHeight () {
+        let tempHz = 0
+        let arrlis = this.$('.she-content')[0].firstChild.children
+        for (let i = 0; i < arrlis.length; i++) {
+          let tempH = arrlis[i].offsetHeight
+          tempHz = tempHz + tempH
+          this.arrHeight.push(tempHz)
+        }
+        console.log(this.arrHeight)
+      },
+      getScrolls () {
+        let that = this
+        let tops = this.$(window).scrollTop()
+        // that.$('.shezhiList')[0].firstChild.children[i].className = ''
+        console.log(tops)
+        for (let i = 0; i < this.arrHeight.length; i++) {
+          let temp = this.arrHeight[i]
+          if (tops > temp) {
+            console.log('达到执行条件')
+            that.$('.shezhiList')[0].firstChild.children[0].className = 'active'
+            that.$('.shezhiList')[0].firstChild.children[i + 1].className = 'active'
+          }
+        }
       }
     },
     created () {
-      this.init()
     },
     mounted () {
+      this.init()
+      window.addEventListener('load', this.getLisHeight)
+      window.addEventListener('scroll', this.getScrolls)
     },
     watch: {}
   }
@@ -188,9 +216,13 @@
         li:hover{
           background-color: #fff;
         }
+        .active {
+          background-color: #fff;
+        }
       }
     }
     .she-content {
+      height: 1500px;
       width: 75%;
       margin-left: 25%;
       background-color: #fff;

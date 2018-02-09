@@ -1,6 +1,6 @@
 <template>
       <div id="comments">
-          <div class="comments-left">
+          <div class="comments-left" v-show="isShowTabFriends">
             <el-tabs v-model="activeName" @tab-click="handleClick">
               <el-tab-pane label="消息" name="first">
                 <tab-haoyou-modal :friendData="friendList" @rightClick="yuoClick" @getparams="getParamsData" ></tab-haoyou-modal>
@@ -11,6 +11,23 @@
               <el-tab-pane label="多人聊天" name="third">角色管理</el-tab-pane>
             </el-tabs>
           </div>
+          <div class="searchDv-left" v-show="isSearch">
+            <h5>支持搜索</h5>
+            <ul>
+              <li>
+                <p><i class="fa fa-user"></i>好友</p>
+              </li>
+              <li>
+                <p><i class="fa fa-commenting-o"></i>多人聊天</p>
+              </li>
+              <li>
+                <p><i class="fa fa-group"></i>群</p
+              </li>
+              <li>
+                <p><i class="fa fa-times-circle"></i>聊天记录</p>
+              </li>
+            </ul>
+         </div>
           <div class="comments-right">
             <chuang-kou :userItem="paramsItem" v-show="isChuangkou">{{isChuangkou}}</chuang-kou>
             <friend-kou :userItem="paramsItem" v-show="isFriendKou">{{isFriendKou}}</friend-kou>
@@ -48,7 +65,9 @@
           saveId: '',
           paramsItem: {},
           serachFiendsId: '',
-          serachUser: {}
+          serachUser: {},
+          isShowTabFriends: true,
+          isSearch: false
         }
       },
       computed: {...mapState(['isChuangkou', 'isFriendKou', 'isAllFriend'])
@@ -142,6 +161,14 @@
         bus.$on('getfriendsTelData', (Data) => {
           this.serachFiendsId = Data.telNumber
           this.getSerachFriends()
+        })
+        bus.$on('propsShow', (data) => {
+          this.isShowTabFriends = data.isTabFriends
+          this.isSearch = data.isSearch
+        })
+        bus.$on('propsNoShow', (data) => {
+          this.isShowTabFriends = data.isTabFriends
+          this.isSearch = data.isSearch
         })
       }
     }
@@ -273,6 +300,34 @@
       background-color: #fff;
       padding-bottom: 110px;
       box-sizing: border-box;
+    }
+    .searchDv-left {
+      height: 100%;
+      width: 30%;
+      float: left;
+      box-sizing: border-box;
+      h5 {
+        height: 40px;
+        font-weight: normal;
+        padding: 10px;
+        color: #d6d6d6;
+      }
+      ul {
+        width: 100%;
+        li {
+          margin-bottom: 1.87rem;
+          padding-left: 1rem;
+          color: #d6d6d6;
+          p {
+            margin-bottom: 0.3rem;
+            i {
+              font-size: 1.125rem;
+              margin-right: 4px;
+            }
+          }
+
+        }
+      }
     }
   }
 </style>

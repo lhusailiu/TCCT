@@ -11,6 +11,7 @@ export default {
 </script>
 
 <style lang="less">
+  @import 'style/less/max';
   @import 'style/less/common.less';
   @import 'style/less/sty.less';
   #app {

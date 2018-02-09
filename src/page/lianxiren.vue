@@ -1,12 +1,18 @@
 <template>
       <div id="lianxiren" ref="lianxiren">
-        <a href="http://threejs.org" target="_blank" rel="noopener">three.js</a> - procedural 3D text by <a href="http://www.lab4games.net/zz85/blog" target="_blank" rel="noopener">zz85</a> &amp; alteredq
-        <br/>type to enter new text, drag to spin the text
-        <br/><span class="button" id="color">change color</span>,
-        <span class="button" id="font">change font</span>,
-        <span class="button" id="weight">change weight</span>,
-        <span class="button" id="bevel">change bevel</span>
-        <a id="permalink" href="#" ref='permalinks'>permalink</a>
+        <el-upload
+          class="upload-demo"
+          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :before-remove="beforeRemove"
+          multiple
+          :limit="3"
+          :on-exceed="handleExceed"
+          :file-list="fileList">
+          <el-button size="small" type="primary">点击上传</el-button>
+          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        </el-upload>
       </div>
 </template>
 
