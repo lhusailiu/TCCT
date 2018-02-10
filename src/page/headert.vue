@@ -109,6 +109,11 @@
                 console.log(this.$route)
               })
             }
+            if (command === 'bb') {
+              this.$router.push({
+                name: 'weiCloud'
+              })
+            }
             if (command === 'kk') {
               this.$router.push({
                 path: '/'

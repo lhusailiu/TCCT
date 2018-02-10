@@ -89,6 +89,7 @@
 </template>
 
 <script>
+  // import BScroll from 'better-scroll'
   import checkBox from '../../common/service-modal/service-checkbox'
   import selectBox from '../../common/service-modal/selecting'
   import selectStatus from '../../common/service-modal/selectStatus'

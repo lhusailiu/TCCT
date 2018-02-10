@@ -17,6 +17,7 @@ const editZiliao = r => require.ensure([], () => r(require('@/page/editZiliao'))
 const mainList = r => require.ensure([], () => r(require('@/page/mainList')), 'mainList')
 const echarts = r => require.ensure([], () => r(require('@/page/echarts')), 'echarts')
 const setAddFriend = r => require.ensure([], () => r(require('@/page/setAddFriend')), 'setAddFriend')
+const weiCloud = r => require.ensure([], () => r(require('@/page/weiCloud')), 'weiCloud')
 // const chuangkou = r => require.ensure([], () => r(require('@/components/chuangkou')), 'chuangkou')
 // const editZiliao = r => require.ensure([], () => r(require('@/common/service-modal/editZiliao')), 'editZiliao')
 
@@ -77,6 +78,11 @@ const routes = [
           path: '/addFriends',
           name: 'addFriends',
           component: addFriends
+        },
+        {
+          path: '/weiCloud',
+          name: 'weiCloud',
+          component: weiCloud
         },
         {
           path: '/tableEdit',
